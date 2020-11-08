@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: microsservico-pagamento
 spec:
-  replicas: 10
+  replicas: 1
   selector:
     matchLabels:
       app: microsservico-pagamento
@@ -18,3 +18,15 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 9091
+          volumeMounts:
+            - name: microsservico-pagamento-config
+              subPath: .env
+              mountPath: /go/src/pagamento/.env
+
+      volumes:
+      - name: microsservico-pagamento-config
+        configMap:
+          name: microsservico-pagamento-config
+          items:
+            - key: env
+              path: .env
