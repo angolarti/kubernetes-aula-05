@@ -34,7 +34,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        context: .
+        context: ./pagamento
         file: ./pagamento/Dockerfile
         tags: angolar/pagamento-ms:${{ steps.tagging.outputs.new_version }}
 
