@@ -4,8 +4,8 @@ WORKDIR /go/src/pagamento
 
 COPY . .
 
-RUN GOOS=linux go build
+RUN GOOS=linux go build -o pagamento
 
 EXPOSE 9091
 
-ENTRYPOINT ["./avancadev-microservice"]
+ENTRYPOINT ["./pagamento"]
