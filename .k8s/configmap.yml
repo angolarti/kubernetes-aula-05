@@ -6,8 +6,6 @@ metadata:
     name: microsservico-pagamento-config
 data:
   env: |
-    RABBITMQ_DEFAULT_USER=rabbitmq
-    RABBITMQ_DEFAULT_PASS=rabbitmq
     RABBITMQ_DEFAULT_HOST=localhost
     RABBITMQ_DEFAULT_PORT=5672
     RABBITMQ_DEFAULT_VHOST=/

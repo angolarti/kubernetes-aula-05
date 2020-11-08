@@ -18,6 +18,8 @@
 
 Cluster -> [Nodes -> [Pods -> [Containers] ] ]
 
+Para rodar o K8S é recomendado no minimo 3 máquinas em produção
+
 ## Deployment
 É um tipo do K8S que trabalha com o conceitode ReplicaSets, para podermos termos mais poder computacional
 
@@ -119,4 +121,26 @@ data:
 
 ```bash
 kubectl apply -f .k8s/configmap.yml
+```
+
+##### Acessar um Pod (container)
+```bash
+kubectl exec -it microsservico-pagamento-5b8d6c8b5d-kl7mp /bin/bash
+```
+
+### Trabalhar com Environment usando Secrets
+É um tipo de objecto onde o dado fica opaque dentro do K8S em base64
+```yml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: microsservico-pagamento-secret
+type: Opaque
+data:
+  RABBITMQ_DEFAULT_USER: cmFiYml0bXE=
+  RABBITMQ_DEFAULT_PASS: cmFiYml0bXE=
+```
+
+```bash
+kubectl apply -f .k8s/secrets.yml
 ```

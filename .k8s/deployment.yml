@@ -19,9 +19,21 @@ spec:
           ports:
             - containerPort: 9091
           volumeMounts:
-            - name: microsservico-pagamento-config
-              subPath: .env
-              mountPath: /go/src/pagamento/.env
+          - name: microsservico-pagamento-config
+            subPath: .env
+            mountPath: /go/src/pagamento/.env
+          
+          env:
+            - name: RABBITMQ_DEFAULT_USER
+              valueFrom:
+                secretKeyRef:
+                  name: microsservico-pagamento-secret
+                  key: RABBITMQ_DEFAULT_USER
+            - name: RABBITMQ_DEFAULT_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: microsservico-pagamento-secret
+                  key: RABBITMQ_DEFAULT_PASS
 
       volumes:
       - name: microsservico-pagamento-config
