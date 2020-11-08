@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microsservico-pagamento
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: microsservico-pagamento
+  template:
+    metadata:
+      labels:
+        app: microsservico-pagamento
+    spec:
+      containers:
+        - name: microsservico-pagamento
+          image: angolar/pagamento-ms:v2
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9091
