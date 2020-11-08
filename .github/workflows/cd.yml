@@ -18,7 +18,7 @@ jobs:
       uses: docker/setup-buildx-action@v1
     
     - name: Login to dockerhub
-      uses: docker/login-actions@v1
+      uses: docker/login-action@v1
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -34,8 +34,8 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        context: ./pagamento
-        file: ./Dockerfile
+        context: .
+        file: ./pagamento/Dockerfile
         tags: angolar/pagamento-ms:${{ steps.tagging.outputs.new_version }}
 
     - name: install doctl
